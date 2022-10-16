@@ -2,11 +2,14 @@
 import { ThemeProvider} from '@mui/material/styles';
 import theme from '../../selectors/Theme'
 // == Composant
+import Header from '../Header';
+import Home from '../Home'
 function App() {
   return (
     <ThemeProvider theme={theme}>
 
-      <h1>Composant : App</h1>
+      <Header />
+      <Home />
 
     </ThemeProvider>
 
