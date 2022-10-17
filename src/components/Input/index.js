@@ -1,4 +1,5 @@
 /* eslint-disable no-unneeded-ternary */
+import { TextField } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -20,7 +21,7 @@ function Input({ name, ...props }) {
     });
   };
   return (
-    <input
+    <TextField
       name={name}
       value={value ? value : ''}
       onChange={handleChange}

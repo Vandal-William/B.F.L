@@ -1,0 +1,71 @@
+@media (min-width:360px) {
+  
+  .carousel .slider-wrapper {
+    overflow: hidden;
+    margin-left: 4rem;
+    width: 70%;
+    transition: height .15s ease-in;
+  }
+}
+
+@media (min-width:375px) {
+  
+      .carousel .slider-wrapper {
+        overflow: hidden;
+        margin-left: 4rem;
+        width: 70%;
+        transition: height .15s ease-in;
+      }
+}
+@media (min-width:490px) {
+    
+    .carousel .slider-wrapper {
+      overflow: hidden;
+      margin-left: 7rem!important;
+      width: 55%!important;
+      transition: height .15s ease-in;
+    }
+}
+@media (min-width:630px) {
+    
+    .carousel .slider-wrapper {
+      overflow: hidden;
+      margin-left: 10rem!important;
+      width: 49%!important;
+      transition: height .15s ease-in;
+    }
+}
+
+@media (min-width:800px) {
+    
+  .carousel .slider-wrapper {
+    overflow: hidden;
+    margin-left: 15rem!important;
+    width: 40%!important;
+    transition: height .15s ease-in;
+  }
+}
+
+@media (min-width:900px) {
+    
+  .carousel .slider-wrapper {
+    overflow: hidden;
+    margin-left: 19rem!important;
+    width: 125%!important;
+    transition: height .15s ease-in;
+  }
+}
+
+@media (min-width:1000px) {
+    .carousel .slider-wrapper {
+        overflow: hidden;
+        margin-left: 27rem!important;
+        width: 110%!important;
+        transition: height .15s ease-in;
+      }
+
+}
+
+
+
+
