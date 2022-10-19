@@ -1,5 +1,5 @@
 // == Import
-import { Box, Grid, TextField, Button } from '@mui/material';
+import { Box, Grid, Typography} from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import * as React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
@@ -7,34 +7,24 @@ import { styled } from '@mui/system';
 
 // == Composant
 import Input from '../Input'
-import xsHeaderImage from '../../asset/Images/header/xs-header-image.jpg';
-import lgHeaderImage from '../../asset/Images/header/lg-header-image.jpg';
-import xlHeaderImage from '../../asset/Images/header/xl-header-image.jpg';
+import { useParams } from 'react-router-dom';
+import homeImage from '../../asset/Images/headerImages/home/homeImage.jpg';
+import booksImage from '../../asset/Images/headerImages/books/booksImage.jpg';
+import readingImage from '../../asset/Images/headerImages/reading/readingImage.jpg';
+import completeImage from '../../asset/Images/headerImages/complete/completeImage.jpg';
+import wishlistImage from '../../asset/Images/headerImages/wishlist/wishlistImage.jpg';
 
 
 
 function Header() {
-
+  const params = useParams();
+  console.log(params)
   const [term, setTerm] = React.useState('');
 
 // ======================================== Media query =======================================
 
   const BoxImageHeader = styled(Box)(({ theme }) => ({
-    [theme.breakpoints.between('xs', 'md')]: {
-      background: `url(${xsHeaderImage}) no-repeat`,
-      backgroundSize: 'cover',
-      
-    },
-    [theme.breakpoints.up('md')]: {
-      background: `url(${lgHeaderImage}) no-repeat`,
-      backgroundSize: 'cover',
-      
-    },
-    [theme.breakpoints.up('xl')]: {
-      background: `url(${xlHeaderImage}) no-repeat`,
-      backgroundSize: 'cover',
-      
-    },
+   
   }));
 
 
@@ -76,9 +66,50 @@ function Header() {
   };
 
   return (
-  
-  
-      <BoxImageHeader component='header'  sx={{ height: '50rem'}}>
+  <>
+  {!params.books && (
+    <BoxImageHeader component='header'  sx={{ height: '50rem',  background : `linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) ), url(${homeImage}) `, backgroundSize: 'cover'  }}>
+      <Grid container sx={{
+        alignItems: 'start',
+        justifyContent: 'center',
+        height: '50rem'
+      
+      }}
+      >
+          {!params.books && (
+              <Box component='form' sx={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: '15rem'}}> 
+                <InputSearch name='search' variant='filled' label='Rechercher un livre' sx={{width: '50%', bgcolor: 'white' }}>
+                <SearchIcon sx={{color: 'black'}}/>
+                </InputSearch>
+
+                <InputSelect
+                  name='searchSelect'
+                  id="outlined-select-currency"
+                  select
+                  label='Par'
+                  value={term}
+                  onChange={handleChange}
+                  variant='filled'
+                  sx={{bgcolor: 'lightblue', width: '10%', color: 'white'}}
+                  >
+                  {searchTerm.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </InputSelect>
+              </Box>
+          )}
+          {params.books === 'books' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Tous mes livres </Typography>}
+          {params.books === 'reading' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> En cours de lecture</Typography>} 
+          {params.books === 'complete' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Lectures terminées </Typography>}
+          {params.books === 'wishlist' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Bientôt dans ma bibliothèque </Typography>}          
+
+    </Grid>
+      </BoxImageHeader>
+  )}
+  {params.books === 'books' && (
+    <BoxImageHeader component='header'  sx={{ height: '50rem',  background : `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1) ), url(${booksImage}) black`, backgroundSize: 'cover'  }}>
       <Grid container sx={{
         alignItems: 'center',
         justifyContent: 'center',
@@ -86,33 +117,165 @@ function Header() {
       
       }}
       >
+          {!params.books && (
+              <Box component='form' sx={{width: '100%', display: 'flex', justifyContent: 'center'}}> 
+                <InputSearch name='search' variant='filled' sx={{width: '50%', bgcolor: 'white' }}>
+                <SearchIcon sx={{color: 'black'}}/>
+                </InputSearch>
 
-        
-            <Box component='form' sx={{width: '100%', display: 'flex', justifyContent: 'center'}}> 
-              <InputSearch name='search' variant='filled' sx={{width: '50%', bgcolor: '#eaeaea'}}>
-              <SearchIcon sx={{color: 'black'}}/>
-              </InputSearch>
-
-              <InputSelect
-                name='searchSelect'
-                id="outlined-select-currency"
-                select
-                label='Recherche'
-                value={term}
-                onChange={handleChange}
-                variant='filled'
-                sx={{bgcolor: 'lightblue', width: '10%', color: 'white'}}
-                >
-                {searchTerm.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </InputSelect>
-            </Box>
+                <InputSelect
+                  name='searchSelect'
+                  id="outlined-select-currency"
+                  select
+                  label='Recherche'
+                  value={term}
+                  onChange={handleChange}
+                  variant='filled'
+                  sx={{bgcolor: 'lightblue', width: '10%', color: 'white'}}
+                  >
+                  {searchTerm.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </InputSelect>
+              </Box>
+          )}
+          {params.books === 'books' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Tous mes livres </Typography>}
+          {params.books === 'reading' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> En cours de lecture</Typography>} 
+          {params.books === 'complete' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Lectures terminées </Typography>}
+          {params.books === 'wishlist' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Bientôt dans ma bibliothèque </Typography>}          
 
     </Grid>
       </BoxImageHeader>
+  )}
+
+  {params.books === 'reading' && (
+    <BoxImageHeader component='header'  sx={{ height: '50rem',  background : `linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) ), url(${readingImage}) black`, backgroundSize: 'cover'  }}>
+      <Grid container sx={{
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '50rem'
+      
+      }}
+      >
+          {!params.books && (
+              <Box component='form' sx={{width: '100%', display: 'flex', justifyContent: 'center'}}> 
+                <InputSearch name='search' variant='filled' sx={{width: '50%', bgcolor: 'white' }}>
+                <SearchIcon sx={{color: 'black'}}/>
+                </InputSearch>
+
+                <InputSelect
+                  name='searchSelect'
+                  id="outlined-select-currency"
+                  select
+                  label='Recherche'
+                  value={term}
+                  onChange={handleChange}
+                  variant='filled'
+                  sx={{bgcolor: 'lightblue', width: '10%', color: 'white'}}
+                  >
+                  {searchTerm.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </InputSelect>
+              </Box>
+          )}
+          {params.books === 'books' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Tous mes livres </Typography>}
+          {params.books === 'reading' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> En cours de lecture</Typography>} 
+          {params.books === 'complete' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Lectures terminées </Typography>}
+          {params.books === 'wishlist' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Bientôt dans ma bibliothèque </Typography>}          
+
+    </Grid>
+      </BoxImageHeader>
+  )}
+
+  {params.books === 'complete' && (
+    <BoxImageHeader component='header'  sx={{ height: '50rem',  background : `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) ), url(${completeImage}) black`, backgroundSize: 'cover'  }}>
+      <Grid container sx={{
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '50rem'
+      
+      }}
+      >
+          {!params.books && (
+              <Box component='form' sx={{width: '100%', display: 'flex', justifyContent: 'center'}}> 
+                <InputSearch name='search' variant='filled' sx={{width: '50%', bgcolor: 'white' }}>
+                <SearchIcon sx={{color: 'black'}}/>
+                </InputSearch>
+
+                <InputSelect
+                  name='searchSelect'
+                  id="outlined-select-currency"
+                  select
+                  label='Recherche'
+                  value={term}
+                  onChange={handleChange}
+                  variant='filled'
+                  sx={{bgcolor: 'lightblue', width: '10%', color: 'white'}}
+                  >
+                  {searchTerm.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </InputSelect>
+              </Box>
+          )}
+          {params.books === 'books' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Tous mes livres </Typography>}
+          {params.books === 'reading' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> En cours de lecture</Typography>} 
+          {params.books === 'complete' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Lectures terminées </Typography>}
+          {params.books === 'wishlist' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Bientôt dans ma bibliothèque </Typography>}          
+
+    </Grid>
+      </BoxImageHeader>
+  )}
+
+  {params.books === 'wishlist' && (
+    <BoxImageHeader component='header'  sx={{ height: '50rem',  background : `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) ), url(${wishlistImage}) black`, backgroundSize: 'cover'  }}>
+      <Grid container sx={{
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '50rem'
+      
+      }}
+      >
+          {!params.books && (
+              <Box component='form' sx={{width: '100%', display: 'flex', justifyContent: 'center'}}> 
+                <InputSearch name='search' variant='filled' sx={{width: '50%', bgcolor: 'white' }}>
+                <SearchIcon sx={{color: 'black'}}/>
+                </InputSearch>
+
+                <InputSelect
+                  name='searchSelect'
+                  id="outlined-select-currency"
+                  select
+                  label='Recherche'
+                  value={term}
+                  onChange={handleChange}
+                  variant='filled'
+                  sx={{bgcolor: 'lightblue', width: '10%', color: 'white'}}
+                  >
+                  {searchTerm.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </InputSelect>
+              </Box>
+          )}
+          {params.books === 'books' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Tous mes livres </Typography>}
+          {params.books === 'reading' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> En cours de lecture</Typography>} 
+          {params.books === 'complete' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Lectures terminées </Typography>}
+          {params.books === 'wishlist' && <Typography variant='h2' sx={{color: 'white', fontWeight: 'bold'}}> Bientôt dans ma bibliothèque </Typography>}          
+
+    </Grid>
+      </BoxImageHeader>
+  )}
+  </>
 
   );
 }

@@ -6,11 +6,14 @@ import { Box } from '@mui/system';
 // == Composant
 import Header from '../Header'
 import NewBooks from '../Books/NewBooks' 
+
 import './style.scss'
+import NavBar from '../NavBar';
 
 function Home () {
   return (
     <>
+      <NavBar />
       <Header />
       <Grid container sx={{justifyContent: 'center'}}>
         <Container >
