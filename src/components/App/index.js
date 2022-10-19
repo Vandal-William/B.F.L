@@ -18,10 +18,10 @@ function App() {
    
       <Routes>
         <Route path='/' element={<Home />} /> 
-        <Route path='/:books' element={<Books />} /> 
-        <Route path='/:reading' element={<BooksReading />} /> 
-        <Route path='/:complete' element={<BooksComplete />} /> 
-        <Route path='/:wishlist' element={<BooksWishlist />} /> 
+        <Route path='/books' element={<Books />} /> 
+        <Route path='/reading' element={<BooksReading />} /> 
+        <Route path='/complete' element={<BooksComplete />} /> 
+        <Route path='/wishlist' element={<BooksWishlist />} /> 
         <Route path='/login' element={<Login />} /> 
         <Route path='/signup' element={<Register />} /> 
         <Route path='/nav' element={<NavLinkMobile />} /> 

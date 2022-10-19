@@ -30,6 +30,7 @@ function NavBar () {
       textShadow: 'none'
     },
   }));
+
   return (
     
     <NavBar>
