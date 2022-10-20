@@ -3,6 +3,7 @@ import { Grid, Container} from '@mui/material';
 import { styled } from '@mui/system';
 import { Box, Typography} from '@mui/material';
 import NavBar from '../../NavBar';
+import { useSelector } from 'react-redux';
 
 // == Composant
 import BookReading from './BookReading'
@@ -15,7 +16,8 @@ function BooksReading () {
    
   }));
 
-
+  const books = useSelector(state => state.books.books)
+  const reading = books.filter(read => read.tag.name === 'Lecture en cours')
   return (
     <>
       <NavBar />
@@ -36,7 +38,15 @@ function BooksReading () {
       <Grid container sx={{justifyContent: 'center'}}>
         <Container >
 
-          <BookReading />
+        <Grid container sx={{justifyContent: 'center', gap: '1rem', padding: '1rem', marginTop: '5rem'}}>
+        {reading.map(book =>(
+          <BookReading 
+            key={book.Num}
+            image={book.Image}
+            title={book.Titre}
+          />
+        ))}          
+        </Grid>
 
         </Container>
 

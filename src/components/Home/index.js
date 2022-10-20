@@ -9,8 +9,13 @@ import NewBooks from '../Books/NewBooks'
 
 import './style.scss'
 import NavBar from '../NavBar';
+import { useSelector } from 'react-redux';
 
 function Home () {
+  const books = useSelector(state => state.books.books)
+  const complete = books.filter(book => book.tag.name === 'Lecture terminer')
+  const reading = books.filter(book => book.tag.name === 'Lecture en cours')
+  const wishlist = books.filter(book => book.tag.name === 'Wishlist')
   return (
     <>
       <NavBar />
@@ -27,7 +32,7 @@ function Home () {
                     <Grid item xs={11} md={5}>
                       <Card>
                         <CardContent>
-                          <Typography variant='h3' sx={{textAlign: 'center', fontWeight: 'bold', color: '#605c6a'}}>200+ </Typography>
+                          <Typography variant='h3' sx={{textAlign: 'center', fontWeight: 'bold', color: '#605c6a'}}>{books.length}+ </Typography>
                           <Typography sx={{textAlign: 'center', color: 'gray'}}>Livres dans ma bibliothèque</Typography>
                         </CardContent>
                       </Card>
@@ -36,7 +41,7 @@ function Home () {
                     <Grid item xs={11} md={5}>
                       <Card>
                         <CardContent>
-                          <Typography variant='h3' sx={{textAlign: 'center', fontWeight: 'bold', color: '#605c6a' }}>100+</Typography>
+                          <Typography variant='h3' sx={{textAlign: 'center', fontWeight: 'bold', color: '#605c6a' }}>{complete.length}+</Typography>
                           <Typography sx={{textAlign: 'center', color: 'gray'}}>Livres terminer</Typography>
                         </CardContent>
                       </Card>
@@ -45,7 +50,7 @@ function Home () {
                     <Grid item xs={11} md={5}>
                       <Card>
                         <CardContent>
-                          <Typography variant='h3' sx={{textAlign: 'center', fontWeight: 'bold', color: '#605c6a'}}>5+</Typography>
+                          <Typography variant='h3' sx={{textAlign: 'center', fontWeight: 'bold', color: '#605c6a'}}>{reading.length}+</Typography>
                           <Typography sx={{textAlign: 'center', color: 'gray'}}>Livres en cours de lecture</Typography>
                         </CardContent>
                       </Card>
@@ -54,7 +59,7 @@ function Home () {
                     <Grid item xs={11} md={5}>
                       <Card>
                         <CardContent>
-                          <Typography variant='h3' sx={{textAlign: 'center', fontWeight: 'bold', color: '#605c6a'}}>90+</Typography>
+                          <Typography variant='h3' sx={{textAlign: 'center', fontWeight: 'bold', color: '#605c6a'}}>{wishlist.length}+</Typography>
                           <Typography sx={{textAlign: 'center', color: 'gray'}}>Livre dans ma Whishlist</Typography>
                         </CardContent>
                       </Card>

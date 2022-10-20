@@ -9,6 +9,7 @@ import NavBar from '../NavBar';
 // == Composant
 import Book from './Book'
 import booksImage from '../../asset/Images/headerImages/books/booksImage.jpg';
+import { useSelector } from 'react-redux';
 
 
 function Books () {
@@ -17,6 +18,7 @@ function Books () {
    
   }));
 
+  const books = useSelector(state => state.books.books)
 
   return (
     <>
@@ -34,10 +36,21 @@ function Books () {
                
     </Grid>
       </BoxImageHeader>
+      
       <Grid container sx={{justifyContent: 'center'}}>
         <Container >
 
-          <Book />
+        <Grid container sx={{justifyContent: 'center', gap: '1rem', padding: '1rem', marginTop: '5rem'}}>
+        {books.map(book =>(
+          <Book 
+            key={book.Num}
+            image={book.Image}
+            title={book.Titre}
+          />
+
+        ))}
+          
+        </Grid>
 
         </Container>
 

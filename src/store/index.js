@@ -3,8 +3,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reducer from "../reducers";
 
 import debug from '../middlewares/debug';
+import books from '../middlewares/books'
 
-const middlewares = applyMiddleware(debug);
+const middlewares = applyMiddleware(books, debug);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const enhancers = composeEnhancers(middlewares);

@@ -1,19 +1,20 @@
 // == Import
-import { Grid, Container} from '@mui/material';
+import { Box } from '@mui/material';
 
 
 
 // == Composant
-function Book () {
+function Book ({image, title}) {
   return (
     
-    <Grid item>
-     
-      <h1> Tous les livres ici </h1>
+    
+      <Box 
+        component='img' 
+        src={image}
+        alt={title}
+        sx={{width: '20%', height: '24rem', boxShadow: '0.1rem 0.1rem 0.2rem black', ":hover": 'background : linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1) )' }}
 
-    </Grid>
-
-
+      />
 
 
   );

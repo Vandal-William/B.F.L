@@ -1,21 +1,16 @@
 // == Import
-import { Grid, Container} from '@mui/material';
+import { Box } from '@mui/material';
 
 
 
 // == Composant
 
-function BookWish () {
+function BookWish ({image, title}) {
   return (
     
-    <Grid item>
-     
-      <h1> Tous les livres a lire </h1>
-
-    </Grid>
-
-
-
+    <Box >
+      
+    </Box>
 
   );
 

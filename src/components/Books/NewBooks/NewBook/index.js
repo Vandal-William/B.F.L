@@ -7,17 +7,37 @@ import React from 'react'
 // == Composant
 import livre from '../../../../asset/Images/Livre.jpg'
 
-function NewBook () {
+function NewBook ({image, tag, title}) {
   return (
-    <Grid item md={3} >
-        <Box sx={{position: 'relative'}}>
+    <Grid item md={3} sx={{position: 'relative'}}>
+        <Box >
 
-          <Chip 
-            sx={{position: 'absolute', top: '0.1rem', right: '0', bgcolor: 'lightgreen'}} 
-            label="Terminer" 
-          />
+          {tag === 'Lecture en cours' && (
+            <Chip
+              sx={{position: 'absolute', top: '1rem', right: '-3rem', bgcolor: 'lightblue', padding: '1.5rem'}} 
+              label={tag}
+            />
+          )}
+          {tag === 'Lecture terminer' && (
+            <Chip
+              sx={{position: 'absolute', top: '1rem', right: '-3rem', bgcolor: 'lightgreen', padding: '1.5rem'}} 
+              label={tag}
+            />
+          )}
+          {tag === 'Wishlist' && (
+            <Chip
+              sx={{position: 'absolute', top: '1rem', right: '-3rem', bgcolor: 'lightpink', padding: '1.5rem'}} 
+              label={tag}
+            />
+          )}
+          {tag === 'Bibliothèque' && (
+            <Chip
+              sx={{position: 'absolute', top: '1rem', right: '-3rem', bgcolor: 'lightyellow', padding: '1.5rem'}} 
+              label={tag}
+            />
+          )}
           <Box sx={{width: '100%'}}>
-            <img src={livre} alt='livre' width='100%'/>
+            <img  src={image} alt={title} width='100%'/>
 
           </Box>
           

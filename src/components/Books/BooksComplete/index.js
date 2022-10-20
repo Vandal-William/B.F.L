@@ -3,6 +3,7 @@ import { Grid, Container} from '@mui/material';
 import { styled } from '@mui/system';
 import { Box, Typography} from '@mui/material';
 import NavBar from '../../NavBar';
+import { useSelector } from 'react-redux';
 
 
 
@@ -17,6 +18,8 @@ function BooksComplete () {
    
   }));
 
+  const books = useSelector(state => state.books.books)
+  const complete = books.filter(book => book.tag.name === 'Lecture terminer')
   return (
     <>
       <NavBar />
@@ -36,7 +39,16 @@ function BooksComplete () {
       <Grid container sx={{justifyContent: 'center'}}>
         <Container >
 
-        <BookComplete />
+        <Grid container sx={{justifyContent: 'center', gap: '1rem', padding: '1rem', marginTop: '5rem'}}>
+        {complete.map(book =>(
+          <BookComplete 
+            key={book.Num}
+            image={book.Image}
+            title={book.Titre}
+          />
+
+        ))}
+        </Grid>
 
         </Container>
 
